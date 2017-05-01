@@ -13,6 +13,7 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import utils.СlassCompiler;
 
 public class Controller {
 
@@ -65,6 +66,8 @@ public class Controller {
         if (file != null){
             mapOfItems.put(file.getName(), file);
             items.add(file.getName());
+            СlassCompiler compiler = new СlassCompiler(file);
+            compiler.classCompile();
         }
         listOfItems.setItems(items);
         listOfItems.getSelectionModel().clearSelection();
