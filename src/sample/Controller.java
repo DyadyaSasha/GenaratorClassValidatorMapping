@@ -81,6 +81,9 @@ public class Controller {
         if (folder != null){
             mapOfItems.put(folder.getName(), folder);
             items.add(folder.getName());
+            СlassCompiler compiler = new СlassCompiler(folder);
+            compiler.classCompile();
+
         }
         listOfItems.setItems(items);
         listOfItems.getSelectionModel().clearSelection();
