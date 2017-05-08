@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -18,16 +19,11 @@ public class CustomClassLoader extends ClassLoader{
     }
 
     private Class getClass(String name) throws ClassNotFoundException {
-        String file = name;
         byte[] b = null;
         try {
-            b = loadClassFileData(file);
-
-            System.out.println("BYTEARRAY: "+b.length);
-            file = name.substring(24,name.length()-6).replace(File.separatorChar, '.');
-            System.out.println("fileNameTodefineClass: "+file);
-
-            Class c = defineClass(file, b, 0, b.length);
+            b = loadClassFileData(name);
+            System.out.println(name);
+            Class c = defineClass("ArrayVector", b, 0, b.length);
             resolveClass(c);
             return c;
         } catch (IOException e) {
@@ -64,13 +60,16 @@ public class CustomClassLoader extends ClassLoader{
         public static void main(String[] args) throws IOException {
         CustomClassLoader customClassLoader = new CustomClassLoader(CustomClassLoader.class.getClassLoader());
         File file = new File("/home/user/JAVA/Sberteh/classes/ArrayVector.class");
-        Class clas = null;
-            try {
-                clas = customClassLoader.loadClass(customClassLoader.fileToName(file));
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            System.out.println(clas.getName());
+//        Class clas = null;
+//            try {
+//                clas = customClassLoader.loadClass(customClassLoader.fileToName(file));
+//            } catch (ClassNotFoundException e) {
+//                e.printStackTrace();
+//            }
+//            for (Method m:clas.getDeclaredMethods()){
+//                System.out.println(m.getName());
+//            }
+//            System.out.println(file.getAbsoluteFile().getName());
         }
 }
 
