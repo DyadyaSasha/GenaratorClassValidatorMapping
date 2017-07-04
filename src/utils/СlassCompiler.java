@@ -8,13 +8,12 @@ import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by user on 01.05.17.
- */
+
 public class СlassCompiler {
     private static final String DIR = Paths.get(System.getProperty("user.dir"), "classes").toString();
 
@@ -41,9 +40,9 @@ public class СlassCompiler {
     }
 
     public ArrayList<File> reqursiveSearch(File folder) {
-        ArrayList<File> fileList = new ArrayList();
-        customAddList(fileList, folder);
-        return  fileList;
+        List<File> fileList = new ArrayList();
+        customAddList((ArrayList<File>)fileList, folder);
+        return  (ArrayList<File>) fileList;
     }
 
     public void customAddList(ArrayList<File> fileList, File folder){
